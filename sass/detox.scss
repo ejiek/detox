@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/*! bulma.io v0.9.3 | MIT License | github.com/jgthms/bulma */
+@import "../bulma/sass/utilities/_all";
+@import "../bulma/sass/base/_all";
+@import "../bulma/sass/elements/_all";
+@import "../bulma/sass/form/_all";
+@import "../bulma/sass/components/_all";
+@import "../bulma/sass/grid/_all";
+@import "../bulma/sass/helpers/_all";
+@import "../bulma/sass/layout/_all";
+
+/*! drop footer to the bottom */
+.ejieks-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+footer {
+  margin-top: auto;
+}

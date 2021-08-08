@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrap container" role="document">
+  <h1 class="title">
+    {{ section.title }}
+  </h1>
+  <div class="content">
+    {{ section.content | safe }}
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="{{ config.extra.language_code | default(value="en-US") }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <link
+    rel="stylesheet"
+    href="/detox.css">
+</head>
+
+{% block body %}{% set page_class="home" %}{% endblock body %}
+<body class="{{ page_class }}">
+  {% block header %}
+  <header class="header">
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
+          <div class="navbar-item">
+            <a  href="/">
+              <h1 class="title">De Tox</h1>
+            </a>
+          </div>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-start">
+            {% if current_path %}
+              {% set current_section = current_path | split(pat="/") | nth(n=1) -%}
+            {% else %}
+              {% set current_section = '/' -%}
+            {% endif %}
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="dropdown is-right is-active">
+                <div class="dropdown-trigger">
+                  <input id="search" class="input" type="text" placeholder="Search" aria-haspopup="true" aria-controls="search-dropdown">
+                  </input>
+                </div>
+                <div class="dropdown-menu" id="search-dropdown" role="menu">
+                  <div class="dropdown-content search-results" style="display: none;">
+                    <div class="search-results__items"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			{% if config.extra.docs_repo %}
+            <div class="navbar-item">
+                <a href="{{ config.extra.docs_repo }}">
+                  <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22.65 14.39L12 22.13 1.35 14.39a.84.84 0 0 1-.3-.94l1.22-3.78 2.44-7.51A.42.42 0 0 1 4.82 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.49h8.1l2.44-7.51A.42.42 0 0 1 18.6 2a.43.43 0 0 1 .58 0 .42.42 0 0 1 .11.18l2.44 7.51L23 13.45a.84.84 0 0 1-.35.94z"></path></svg>
+              </a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </nav>
+   </header>
+  {% endblock header %}
+
+  {% block content %}{% endblock content %}
+
+  {% block footer %}
+  <footer class="footer">
+    <div class="container">
+      <p>kek</p>
+    </div>
+  </footer>
+  {% endblock footer %}
+
+  <script type="text/javascript" src="/elasticlunr.min.js"></script>
+  <script type="text/javascript" src="/search_index.en.js"></script>
+  <script type="text/javascript" src="/search.js"></script>
+</body>
+</html>
