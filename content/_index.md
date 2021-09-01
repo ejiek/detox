@@ -13,6 +13,7 @@ MarkDown files in a git repo
 
 Edit in a browser, IDE or your text editor of choice ^\[:wq
 
-# DocOps
+## DocOps
+
 Bless your documentation with version control system, human readable sources and even CI/CD Pipeline.
 Just like your code.

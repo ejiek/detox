@@ -1,3 +1,4 @@
+{% import 'macros/menu.html' as macro_menu -%}
 <!DOCTYPE html>
 <html lang="{{ config.extra.language_code | default(value="en-US") }}">
 <head>
@@ -12,7 +13,7 @@
 {% block body %}{% set page_class="home" %}{% endblock body %}
 <body class="{{ page_class }}">
   {% block header %}
-  <header class="header">
+  <header class="header block">
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
@@ -31,11 +32,15 @@
 
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-start">
-            {% if current_path %}
-              {% set current_section = current_path | split(pat="/") | nth(n=1) -%}
-            {% else %}
-              {% set current_section = '/' -%}
-            {% endif %}
+            {% set index = get_section(path="_index.md") -%}
+            {% for sections in index.subsections -%}
+              {% set section = get_section(path=sections) -%}
+              {% set current_section = current_path | split(pat="/") |  nth(n=1) -%}
+              {% set stripped_section_path  = section.path | replace(from="/", to="") -%}
+              <a class="navbar-item{% if current_section==stripped_section_path %} is-active{% endif %}" href="{{ section.permalink }}">
+                {{ section.title }}
+              </a>
+            {% endfor -%}
           </div>
 
           <div class="navbar-end">
@@ -66,7 +71,21 @@
    </header>
   {% endblock header %}
 
-  {% block content %}{% endblock content %}
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="tile is-ancestor">
+          {% block menu %}
+          {% endblock menu %}
+
+          <div class="tile">
+            {% block content %}
+            {% endblock content %}
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   {% block footer %}
   <footer class="footer">

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block menu %}
+  {% set ancestors_length = page.ancestors | length - 1 %}
+  {% set parent_section = page.ancestors | nth(n=ancestors_length) %}
+  {{ macro_menu::menu(current_section=parent_section) }}
+{% endblock menu %}
+
+{% block content %}
+<div class="wrap container" role="document">
+  <h1 class="title">
+    {{ page.title }}
+  </h1>
+  <div class="content">
+    {{ page.content | safe }}
+  </div>
+</div>
+{% endblock content %}
