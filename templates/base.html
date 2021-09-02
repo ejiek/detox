@@ -74,14 +74,14 @@
   <main>
     <section class="section">
       <div class="container">
-        <div class="tile is-ancestor">
-          {% block menu %}
-          {% endblock menu %}
-
+        <div class="tile is-ancestor is-flex-direction-row-reverse">
           <div class="tile">
             {% block content %}
             {% endblock content %}
           </div>
+
+          {% block menu %}
+          {% endblock menu %}
         </div>
       </div>
     </section>
