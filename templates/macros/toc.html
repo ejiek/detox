@@ -1,0 +1,25 @@
+{% macro toc(page) %}
+<div class="tile is-2 is-hidden-touch">
+  <aside class="menu">
+  <p class="menu-label">
+    On this page
+  </p>
+  <ul class="menu-list">
+    {% for h1 in page.toc %}
+      <li>
+        <a href="{{ h1.permalink | safe}}">{{ h1.title }}</a>
+          {% if h1.children %}
+            <ul>
+              {% for h2 in h1.children %}
+                <li>
+                  <a href="{{ h2.permalink | safe }}" class="ms-3">{{ h2.title }}</a>
+                </li>
+               {% endfor %}
+            </ul>
+          {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+  </aside>
+</div>
+{% endmacro %}

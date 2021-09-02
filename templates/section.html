@@ -14,3 +14,7 @@
   </div>
 </div>
 {% endblock content %}
+
+{% block toc %}
+  {{ macro_toc::toc(page=section) }}
+{% endblock toc %}

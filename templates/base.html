@@ -1,4 +1,5 @@
 {% import 'macros/menu.html' as macro_menu -%}
+{% import 'macros/toc.html' as macro_toc -%}
 <!DOCTYPE html>
 <html lang="{{ config.extra.language_code | default(value="en-US") }}">
 <head>
@@ -75,6 +76,9 @@
     <section class="section">
       <div class="container">
         <div class="tile is-ancestor is-flex-direction-row-reverse">
+          {% block toc %}
+          {% endblock toc %}
+
           <div class="tile">
             {% block content %}
             {% endblock content %}
