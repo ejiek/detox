@@ -122,11 +122,10 @@ function makeTeaser(body, terms) {
 }
 
 function formatSearchResultItem(item, terms) {
-  return '<div class="columns">'
-  + '<div class="column is-narrow">'
+  return '<h1 class="title">'
   + `<a href="${item.ref}">${item.doc.title}</a>`
-  + '</div>'
-  + `<div class="column">${makeTeaser(item.doc.body, terms)}</div>`;
+  + '</h1>'
+  + `<p>${makeTeaser(item.doc.body, terms)}</p>`;
 }
 
 function initSearch() {
@@ -164,10 +163,12 @@ function initSearch() {
 
     currentTerm = term;
     for (var i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
-      var item = document.createElement('div', { class : "dropdown-item"});
+      var item = document.createElement('div');
+      item.classList.add("dropdown-item");
       item.innerHTML = formatSearchResultItem(results[i], term.split(" "));
       $searchResultsItems.appendChild(item);
-      var split = document.createElement('hr', { class : "dropdown-divider"});
+      var split = document.createElement('hr');
+      split.classList.add("dropdown-divider");
       $searchResultsItems.appendChild(split);
     }
   }, 150));
